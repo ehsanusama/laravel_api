@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
-class ebayController extends Controller
+class olxController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('ebay_scraper');
+        return view('olx_scraper');
     }
 
     /**
@@ -35,10 +35,10 @@ class ebayController extends Controller
             $scrapedData = [];
             $scrapedData['page_title'] = $crawler->filter('title')->text();
             $elements = [
-                'title' => $crawler->filterXPath('//*[@id="mainContent"]/div[1]/div[1]/h1/span'),
-                'condition' => $crawler->filterXPath('//*[@id="mainContent"]/div[1]/div[3]/div[2]/div[1]/div/span/span[1]/span'),
-                'warranty' => $crawler->filterXPath('//*[@id="mainContent"]/div[1]/div[3]/div[2]/div[2]/span[2]'),
-                'price' => $crawler->filterXPath('//*[@id="mainContent"]/div[2]/div/div[1]/div[1]/div/div[2]/div[1]/span'),
+                'title' => $crawler->filterXPath('//*[@id="body-wrapper"]/div[1]/header[2]/div/div/div/div[4]/div[1]/div[2]/div/h1'),
+                'condition' => $crawler->filterXPath('//*[@id="body-wrapper"]/div[1]/header[2]/div/div/div/div[4]/div[1]/div[3]/div[2]/div[3]/div/span[2]'),
+                'details' => $crawler->filter('#body-wrapper > div._1075545d.d059c029._4c726bfa._1709dcb4 > header:nth-child(3) > div > div > div > div._0a9bc591 > div.f4a99e5c > div:nth-child(4) > div._0f86855a > span'),
+                'price' => $crawler->filterXPath('//*[@id="body-wrapper"]/div[1]/header[2]/div/div/div/div[4]/div[1]/div[2]/div/div[1]/div[1]/span'),
             ];
             foreach ($elements as $key => $element) {
                 if ($element->count() > 0) {
@@ -47,7 +47,7 @@ class ebayController extends Controller
                     $scrapedData[$key] = '';
                 }
             }
-            $imgElement =  $crawler->filter('#mainImgHldr > div.ux-image-carousel-container > div.ux-image-carousel.img-transition-medium > div.ux-image-carousel-item.active.image > div > div > img');
+            $imgElement =  $crawler->filter('#body-wrapper > div._1075545d.d059c029._4c726bfa._1709dcb4 > header:nth-child(3) > div > div > div > div._0a9bc591 > div.f4a99e5c > div.cf4781f0._765ea128 > div > div._852cbb9b > div.image-gallery > div > div > div > div > div.image-gallery-slide.center > picture > img');
             if ($imgElement->count() > 0) {
                 // Extract the src attribute of the img tag
                 $imageUrl = $imgElement->attr('src');
@@ -67,7 +67,7 @@ class ebayController extends Controller
         $time = $formattedDateTime;
         // $postData =  $scrapedData;
         $show_data = compact('status', 'message', 'time', 'scrapedData', 'url');
-        return view('ebay_scraper')->with($show_data);
+        return view('olx_scraper')->with($show_data);
     }
 
     /**

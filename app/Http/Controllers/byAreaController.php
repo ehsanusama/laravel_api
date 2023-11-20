@@ -34,7 +34,7 @@ class byAreaController extends Controller
             $scrapedData = [];
             $scrapedData['page_title'] = $crawler->filter('title')->text();
             $elements = [
-                'title' => $crawler->filter('body > div.elementor.elementor-329560.elementor-location-single.post-589222.product.type-product.status-publish.pwb-brand-vollrath.product_cat-chafing-dishes.product_cat-chafing-dishes-vollrath.product_cat-concessions-food-service.product_cat-equipment-supplies.product_cat-vendors.product_cat-vollrath.product_shipping_class-ltl_freight.first.instock.taxable.shipping-taxable.purchasable.product-type-simple.product > div.elementor-element.elementor-element-af98fbe.e-flex.e-con-boxed.e-con.e-parent > div > div.elementor-element.elementor-element-19a232a.elementor-widget.elementor-widget-woocommerce-product-title.elementor-page-title.elementor-widget-heading > div > h1'),
+                'title' => $crawler->filterXPath('/html/body/div[3]/div[2]/div/div[2]/div[2]/div/h1'),
                 'price' => $crawler->filter('body > div.elementor.elementor-329560.elementor-location-single.post-589222.product.type-product.status-publish.pwb-brand-vollrath.product_cat-chafing-dishes.product_cat-chafing-dishes-vollrath.product_cat-concessions-food-service.product_cat-equipment-supplies.product_cat-vendors.product_cat-vollrath.product_shipping_class-ltl_freight.first.instock.taxable.shipping-taxable.purchasable.product-type-simple.product > div.elementor-element.elementor-element-e70a019.e-flex.e-con-boxed.e-con.e-parent > div > div.elementor-element.elementor-element-fa714c3.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-681c287.elementor-widget.elementor-widget-woocommerce-product-price > div > p'),
             ];
 

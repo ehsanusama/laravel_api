@@ -15,7 +15,7 @@
     <div class="container-fluid" style="background-color: #2980b9; color: white">
         <div class="row justify-content-center">
             <div class="col-md-8 mb-4 mt-3">
-                <form action="ebay" method="POST">
+                <form action="olx" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for=""><strong>JSON Data/URL</strong></label>
@@ -81,7 +81,7 @@
                         <div class="card-body">
                             <span class="badge badge-info">{{ $scrapedData['condition'] }}</span>
                             <h5 class="card-title">{{ $scrapedData['title'] }}</h5>
-                            <p class="card-text">{{ $scrapedData['warranty'] }}</p>
+                            <p class="card-text">{{ $scrapedData['details'] }}</p>
                             <span class="badge badge-pill badge-warning">{{ $scrapedData['price'] }}</span>
                         </div>
                     </div>

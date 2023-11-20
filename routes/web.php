@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\byAreaController;
+use App\Http\Controllers\amazonController;
+use App\Http\Controllers\olxController;
 use App\Http\Controllers\ebayController;
 use App\Http\Controllers\ScraperControler;
 use App\Http\Controllers\KSLScrapController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\users;
+use App\Http\Controllers\zillowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +35,9 @@ Route::get('/bayarea_scraper', [byAreaController::class, "index"]);
 Route::post('/bayarea_scraper', [byAreaController::class, "create"]);
 Route::post('/bayarea_add_listing', [byAreaController::class, "store"]);
 Route::get('/ebay', [ebayController::class, "index"]);
-
+Route::post('/ebay', [ebayController::class, "create"]);
+Route::get('/olx', [olxController::class, "index"]);
+Route::post('/olx', [olxController::class, "create"]);
+Route::get('/zillow', [zillowController::class, "index"]);
+Route::get('/amazon', [amazonController::class, "index"]);
 require __DIR__ . '/auth.php';
